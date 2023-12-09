@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173") //this localhost address was looked up from the error generated in browser console (F12)
 @RestController
 @RequestMapping("/api/v1")
 public class EmployeeController {
