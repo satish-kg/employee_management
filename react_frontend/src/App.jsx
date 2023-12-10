@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import ListEmployeeComponent from './components/ListEmployeeComponent'
 import Header from './components/HeaderComponent'
 import Footer from './components/FooterComponent'
+import CreateEmployee from './components/CreateEmployee';
 
 // import {BrowserRouter as Switch} from 'react-router-dom';
 
@@ -22,7 +23,8 @@ function App() {
             <div className='container'>
                 <Routes>
                     {/* <Route path="/" element={<ListEmployeeComponent/>} /> */}
-                    <Route path="/employees/getAll" element={<ListEmployeeComponent/>} />
+                    <Route path="/employee/getAll" element={<ListEmployeeComponent/>} />
+                    <Route path="/employee/create" element={<CreateEmployee />}></Route>
                     {/* <ListEmployeeComponent />  */}
                 </Routes  >
             </div>
