@@ -18,11 +18,20 @@ const ListEmployeeComponent = () => {
         navigate('/employee/create');
     };
 
+    // const goToUpdateEmployee = () =>{
+    //     navigate('/employee/update');
+    // }
+
+    const editEmployee = (id) =>{
+        navigate(`/employee/update/${id}`);
+    }
+
     return (
         <div>
             <h1 className='text-center'>Employees List:</h1>
             <div className="add-employee-btn">
-                <button className='btn btn-primary' onClick={goToAddEmployee}>Add Employee</button>
+                <button className='btn btn-primary' id='add-employee-btn' onClick={goToAddEmployee}>Add Employee</button>
+                {/* <button className='btn btn-primary' id='update-employee-btn' onClick={goToUpdateEmployee}>Update Employee</button>; */}
             </div>
             <div className="row">
                 <table className="table table-stripped table-bordered">
@@ -40,6 +49,9 @@ const ListEmployeeComponent = () => {
                                 <td>{employee.first_name}</td>
                                 <td>{employee.last_name}</td>
                                 <td>{employee.email}</td>
+                                <td>
+                                    <button onClick={()=> editEmployee(employee.id)} className='btn btn-info'>Update</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

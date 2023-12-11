@@ -20,6 +20,15 @@ public class CorsConfig {
             }
         };
     }
+
+    // NEED TO CHECK THIS OUT
+    // @Override
+    // public void addCorsMappings(CorsRegistry registry) {
+    //     registry.addMapping("/api/v1/**") // Adjust the mapping to match your API endpoints
+    //             .allowedOrigins("http://localhost:5173") // Allow requests from this origin
+    //             .allowedMethods("GET", "POST", "PUT", "DELETE") // Allow specific HTTP methods
+    //             .allowedHeaders("*"); // Allow all headers (you can specify particular headers if needed)
+    // }
 }
 // public class CorsConfig {
     

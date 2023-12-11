@@ -1,11 +1,24 @@
-import React, { useState, useEffect, Component } from 'react';
-import { useNavigate } from 'react-router-dom';
-import _ from 'lodash';
+import React, { Component, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import _ from 'lodash';
 
+const UpdateEmployee = () => {
+    const navigate = useNavigate();
+    const {idEmployee} = useParams();
 
-const CreateEmployee = () => {
-    const navigate = new useNavigate();
+    // const [formData, setFormData] = useState({
+    //     id: idEmployee,
+    //     first_name: '',
+    //     last_name: '',
+    //     email:''
+    // });
+
+    // const handleChange = (event) => {
+
+    //     const {name, value} = event.target;
+    //     setFormData({...formData, [name]: value});
+    // }
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -48,60 +61,34 @@ const CreateEmployee = () => {
         // console.log(emailId);
     }
 
-    const saveEmployee = (e) => {
+    const handleUpdate = (e) =>{
         e.preventDefault();
-        // const employee = {firstName, lastName, emailId};
-        const employee = {first_name: firstName, last_name: lastName, email: emailId};
-        console.log('employee => ' + JSON.stringify(employee));
-        sendEmployeeObject(employee);
+        const employeeObj = {first_name : firstName, last_name: lastName, email: emailId};
+        console.log(employeeObj);
+        sendUpdate({idEmployee}, employeeObj);
     }
+    const sendUpdate = async (idEmployee, formData) => {
+        // event.preventDefault();
 
-    const sendEmployeeObject = async (employee) => {
         try {
-            const response = await axios.post('http://localhost:6969/api/v1/employee/create', employee);
-            console.log('Data sent:', response.data);
+            const response = await axios.put(`http://localhost:6969/api/v1/employees/update/${idEmployee}`, formData);
+            console.log('Data updated:', response.data);
             // Handle success (e.g., show success message)
         } catch (error) {
             console.error('Error:', error);
             // Handle error (e.g., show error message)
         }
+    };
+
+    const cancel = () =>{
+        navigate('/employee/getAll');
     }
-
-    // const [formData, setFormData] = useState({
-    //     first_name: '',
-    //     last_name: '',
-    //     email: '',
-    //   });
-
-    // const handleChange = (event) => {
-    //     const { name, value } = event.target;
-    //     setFormData({ ...formData, [name]: value });
-    // };
-
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-
-    //     try {
-    //         const response = await axios.post('http://localhost:5173/api/v1/employees/create', formData);
-    //         console.log('Data sent:', response.data);
-    //         // Handle success (e.g., show success message)
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //         // Handle error (e.g., show error message)
-    //     }
-    // };
-
-    const cancel = () => {
-        return navigate('/employee/getAll');
-    }
-
     return (
         <div>
-            {/* <h1>Create Employee Page react v6.20</h1> */}
             <div className="container">
                 <div className="row">
                     <div className="card col-6 col-md-6 offset-md-3 offset-md-3">
-                        <h3 className="text-center">Add Employee</h3>
+                        <h3 className="text-center">Update Employee</h3>
                         <div className="card-body">
                             <form>
                                 <div className="form-group">
@@ -128,7 +115,7 @@ const CreateEmployee = () => {
                                     </label>
                                     
                                 </div>
-                                <button className='btn btn-success' onClick={saveEmployee}>Save</button>
+                                <button className='btn btn-success' onClick={handleUpdate}>Update</button>
                                 <button className='btn btn-danger' onClick={cancel}>Return</button>
                             </form>
                         </div>
@@ -137,6 +124,7 @@ const CreateEmployee = () => {
             </div>
         </div>
     );
-}
 
-export default CreateEmployee;
+}
+    
+export default UpdateEmployee;

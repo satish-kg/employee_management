@@ -9,6 +9,7 @@ import ListEmployeeComponent from './components/ListEmployeeComponent'
 import Header from './components/HeaderComponent'
 import Footer from './components/FooterComponent'
 import CreateEmployee from './components/CreateEmployee';
+import UpdateEmployee from './components/UpdateEmployee';
 
 // import {BrowserRouter as Switch} from 'react-router-dom';
 
@@ -22,9 +23,10 @@ function App() {
           <Header />
             <div className='container'>
                 <Routes>
-                    {/* <Route path="/" element={<ListEmployeeComponent/>} /> */}
+                    <Route path="/" element={<ListEmployeeComponent/>} />
                     <Route path="/employee/getAll" element={<ListEmployeeComponent/>} />
                     <Route path="/employee/create" element={<CreateEmployee />}></Route>
+                    <Route path="/employee/update/:id" element={<UpdateEmployee />}></Route>
                     {/* <ListEmployeeComponent />  */}
                 </Routes  >
             </div>
