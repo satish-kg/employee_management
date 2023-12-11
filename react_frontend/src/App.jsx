@@ -10,6 +10,7 @@ import Header from './components/HeaderComponent'
 import Footer from './components/FooterComponent'
 import CreateEmployee from './components/CreateEmployee';
 import UpdateEmployee from './components/UpdateEmployee';
+import DeleteEmployee from './components/DeleteEmployee';
 
 // import {BrowserRouter as Switch} from 'react-router-dom';
 
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/employee/getAll" element={<ListEmployeeComponent/>} />
                     <Route path="/employee/create" element={<CreateEmployee />}></Route>
                     <Route path="/employee/update/:id" element={<UpdateEmployee />}></Route>
+                    <Route path="/employee/delete/:id" element={<DeleteEmployee />}></Route>
                     {/* <ListEmployeeComponent />  */}
                 </Routes  >
             </div>

@@ -26,6 +26,10 @@ const ListEmployeeComponent = () => {
         navigate(`/employee/update/${id}`);
     }
 
+    const deleteEmployee = (id) =>{
+        navigate(`/employee/delete/${id}`);
+    }
+
     return (
         <div>
             <h1 className='text-center'>Employees List:</h1>
@@ -51,6 +55,7 @@ const ListEmployeeComponent = () => {
                                 <td>{employee.email}</td>
                                 <td>
                                     <button onClick={()=> editEmployee(employee.id)} className='btn btn-info'>Update</button>
+                                    <button onClick={()=> deleteEmployee(employee.id)} className='btn btn-danger'>Delete</button>
                                 </td>
                             </tr>
                         ))}
