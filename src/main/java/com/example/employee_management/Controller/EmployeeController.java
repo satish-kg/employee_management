@@ -1,6 +1,7 @@
 package com.example.employee_management.Controller;
 
 import com.example.employee_management.Models.EmployeeModel;
+import com.example.employee_management.Models.UpdateEmployeeModel;
 import com.example.employee_management.Service.EmployeeService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,14 @@ public class EmployeeController {
         return employeeService.getEmployeeById(id);
     }
 
+    // @PutMapping("/employee/update")
+    // public ResponseEntity updateEmployee(@PathVariable int id, @RequestBody EmployeeModel employeeDetails){
+    //     return employeeService.updateEmployee(id, employeeDetails);
+    // }
+
     @PutMapping("/employee/update")
-    public ResponseEntity updateEmployee(@PathVariable int id, @RequestBody EmployeeModel employeeDetails){
-        return employeeService.updateEmployee(id, employeeDetails);
+    public ResponseEntity updateEmployee(@RequestBody UpdateEmployeeModel updateEmployeeModel){
+        return employeeService.updateEmployee(updateEmployeeModel);
     }
 
     @DeleteMapping("/employee/delete/{id}")

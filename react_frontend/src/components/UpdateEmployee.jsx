@@ -1,11 +1,14 @@
 import React, { Component, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import _ from 'lodash';
+import axios from 'axios';
 
 const UpdateEmployee = () => {
     const navigate = useNavigate();
-    const {idEmployee} = useParams();
+    const idEmployee = useParams().id;
+    // const axios = require('axios');
+
+    const endpoint = 'http://localhost:6969/api/v1/employee/update'
 
     // const [formData, setFormData] = useState({
     //     id: idEmployee,
@@ -63,22 +66,34 @@ const UpdateEmployee = () => {
 
     const handleUpdate = (e) =>{
         e.preventDefault();
-        const employeeObj = {first_name : firstName, last_name: lastName, email: emailId};
-        console.log(employeeObj);
-        sendUpdate({idEmployee}, employeeObj);
+        const updateEmployeeObj = {id: idEmployee, first_name : firstName, last_name: lastName, email: emailId};
+        console.log('updateEmployeeObjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj : ', updateEmployeeObj);
+        updateEmployeeFunction(updateEmployeeObj);
+        // sendUpdate({idEmployee}, employeeObj);
     }
-    const sendUpdate = async (idEmployee, formData) => {
-        // event.preventDefault();
 
-        try {
-            const response = await axios.put(`http://localhost:6969/api/v1/employees/update/${idEmployee}`, formData);
-            console.log('Data updated:', response.data);
-            // Handle success (e.g., show success message)
-        } catch (error) {
-            console.error('Error:', error);
-            // Handle error (e.g., show error message)
+    async function updateEmployeeFunction(employeeObj){
+        try{
+            const response = await axios.put(`${endpoint}`, employeeObj);
+            console.log('Updated Employee', response.data);
+            return response.data;
+        }catch(error){
+            console.log("Error encountered : ", error);
+            throw error;
         }
-    };
+    }
+    // const sendUpdate = async (idEmployee, formData) => {
+    //     // event.preventDefault();
+
+    //     try {
+    //         const response = await axios.put(`http://localhost:6969/api/v1/employees/update/${idEmployee}`, formData);
+    //         console.log('Data updated:', response.data);
+    //         // Handle success (e.g., show success message)
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //         // Handle error (e.g., show error message)
+    //     }
+    // };
 
     const cancel = () =>{
         navigate('/employee/getAll');

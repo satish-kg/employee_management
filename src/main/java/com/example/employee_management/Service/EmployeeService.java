@@ -2,6 +2,7 @@ package com.example.employee_management.Service;
 
 import com.example.employee_management.Exception.ResourceNotFoundException;
 import com.example.employee_management.Models.EmployeeModel;
+import com.example.employee_management.Models.UpdateEmployeeModel;
 import com.example.employee_management.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,13 +36,26 @@ public class EmployeeService {
         return ResponseEntity.ok(employeeModel);
     }
 
-    public ResponseEntity<EmployeeModel> updateEmployee(int id, EmployeeModel employeeDetails){
-        EmployeeModel employeeModel = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with id : "+id));
+    // public ResponseEntity<EmployeeModel> updateEmployee(int id, EmployeeModel employeeDetails){
+    //     EmployeeModel employeeModel = employeeRepository.findById(id)
+    //             .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with id : "+id));
 
-        employeeModel.setFirst_name(employeeDetails.getFirst_name());
-        employeeModel.setLast_name(employeeDetails.getLast_name());
-        employeeModel.setEmail(employeeDetails.getEmail());
+    //     employeeModel.setFirst_name(employeeDetails.getFirst_name());
+    //     employeeModel.setLast_name(employeeDetails.getLast_name());
+    //     employeeModel.setEmail(employeeDetails.getEmail());
+
+    //     EmployeeModel updatedEmployee = employeeRepository.save(employeeModel);
+
+    //     return ResponseEntity.ok(updatedEmployee);
+    // }
+
+    public ResponseEntity<EmployeeModel> updateEmployee(UpdateEmployeeModel updateEmployeeModel){
+        EmployeeModel employeeModel = employeeRepository.findById(updateEmployeeModel.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Employee does not exist with id : "+updateEmployeeModel.getId()));
+
+        employeeModel.setFirst_name(updateEmployeeModel.getFirst_name());
+        employeeModel.setLast_name(updateEmployeeModel.getLast_name());
+        employeeModel.setEmail(updateEmployeeModel.getEmail());
 
         EmployeeModel updatedEmployee = employeeRepository.save(employeeModel);
 
