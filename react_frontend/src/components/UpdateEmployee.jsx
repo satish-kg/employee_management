@@ -76,6 +76,7 @@ const UpdateEmployee = () => {
         try{
             const response = await axios.put(`${endpoint}`, employeeObj);
             console.log('Updated Employee', response.data);
+            navigate('/employee/getAll');
             return response.data;
         }catch(error){
             console.log("Error encountered : ", error);

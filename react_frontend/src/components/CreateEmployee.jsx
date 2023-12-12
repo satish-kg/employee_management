@@ -60,6 +60,7 @@ const CreateEmployee = () => {
         try {
             const response = await axios.post('http://localhost:6969/api/v1/employee/create', employee);
             console.log('Data sent:', response.data);
+            navigate('/employee/getAll');
             // Handle success (e.g., show success message)
         } catch (error) {
             console.error('Error:', error);
