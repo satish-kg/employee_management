@@ -14,7 +14,7 @@ Screenshots :
 ![image](https://github.com/satish-kg/employee_management/assets/80269402/51d0007d-d870-48bb-a189-fdedb572e494)
 6. Deleting entry for selected employee from database using UI (thor_new odinson)
 ![image](https://github.com/satish-kg/employee_management/assets/80269402/408711fa-7751-41ec-96d7-a485d247a06b)
-7. Delete function
+7. List of employees after deleting a particular employee (thor_new odinson)
 ![image](https://github.com/satish-kg/employee_management/assets/80269402/d0aa3456-8925-469b-b0e4-959ebed0897e)
 
 
